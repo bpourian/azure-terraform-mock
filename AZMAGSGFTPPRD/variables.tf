@@ -10,9 +10,19 @@ variable "tenant_id" {
 }
 
 variable "resource_group_name" {
-  description = "AZMAGRGFTPPRD"
+  description = "Name of resource group"
+  default     = "AZMAGRGFTPPRD"
 }
 
 variable "location" {
-  description = "UK West"
+  description = "Location of resource group"
+  default     = "ukwest"
+}
+
+variable "azurerm_virtual_network" {
+  default = "AZMAGRGVNET1"
+}
+
+variable "azurerm_subnet" {
+  default = "AZMAGSNET11"
 }
