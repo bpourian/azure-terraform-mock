@@ -38,3 +38,17 @@ resource "azurerm_public_ip" "puat-ip" {
     public_ip_address_allocation = "dynamic"
     resource_group_name          = "${azurerm_resource_group.machine.name}"
 }
+
+resource "azurerm_network_interface" "net-i" {
+    name = "AZMAGNIC11"
+    location = "${var.location}"
+    resource_group_name = "${azurerm_resource_group.vnetrm.name}"
+    ip_configuration {
+    name                          = "AZBENVNIP1-private"
+    subnet_id                     = "${azurerm_subnet.vnetsub1.id}"
+    private_ip_address_allocation = "static"
+    private_ip_address            = "10.0.0.4"
+    public_ip_address_id          = "${azurerm_public_ip.puat-ip.id}"
+  }
+
+}
