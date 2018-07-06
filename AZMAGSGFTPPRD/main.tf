@@ -25,14 +25,14 @@ resource "azurerm_virtual_network" "vnet" {
     resource_group_name = "${azurerm_resource_group.vnetrm.name}"
 }
 
-resource "azurerm_subnet" "vnetsub1" {
+resource "azurerm_subnet" "vnetsub12" {
     name                 = "AZMAGSNET12"
     address_prefix       = "${var.subnet1_cidr}"
     resource_group_name  = "${azurerm_resource_group.vnetrm.name}"
     virtual_network_name = "${azurerm_virtual_network.vnet.name}"
 }
 
-resource "azurerm_public_ip" "puat-ip" {
+resource "azurerm_public_ip" "pprd-ip" {
     name                         = "${var.public_ip_name}"
     location                     = "${var.location}"
     public_ip_address_allocation = "dynamic"
@@ -43,14 +43,14 @@ resource "azurerm_network_interface" "net-i" {
     name                      = "AZMAGNIC12"
     location                  = "${var.location}"
     resource_group_name       = "${azurerm_resource_group.vnetrm.name}"
-    network_security_group_id = "${azurerm_network_security_group.puat-sg.id}"
+    network_security_group_id = "${azurerm_network_security_group.pprd-sg.id}"
 
     ip_configuration {
     name                          = "AZBENVNIP2-private"
-    subnet_id                     = "${azurerm_subnet.vnetsub1.id}"
+    subnet_id                     = "${azurerm_subnet.vnetsub12.id}"
     private_ip_address_allocation = "static"
     private_ip_address            = "10.0.1.4"
-    public_ip_address_id          = "${azurerm_public_ip.puat-ip.id}"
+    public_ip_address_id          = "${azurerm_public_ip.pprd-ip.id}"
   }
 }
 
