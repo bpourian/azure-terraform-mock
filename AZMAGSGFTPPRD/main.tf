@@ -53,3 +53,34 @@ resource "azurerm_network_interface" "net-i" {
     public_ip_address_id          = "${azurerm_public_ip.puat-ip.id}"
   }
 }
+
+resource "azurerm_virtual_machine" "vmmachine" {
+  name                  = "AZMAGRGFTPPRD"
+  location              = "${var.location}"
+  resource_group_name   = "${azurerm_resource_group.machine.name}"
+  network_interface_ids = ["${azurerm_network_interface.net-i.id}"]
+  vm_size               = "Standard_DS2_v2"
+
+  storage_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2016-Datacenter"
+    version   = "latest"
+  }
+
+  storage_os_disk {
+    name              = "${azurerm_resource_group.machine.name}-OSdisk"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+  os_profile {
+    computer_name  = "Windows2016-ssh"
+    admin_username = "${var.admin_username}"
+    admin_password = "${var.admin_password}"
+  }
+
+  os_profile_windows_config {
+  }
+}
