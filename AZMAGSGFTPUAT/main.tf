@@ -40,9 +40,11 @@ resource "azurerm_public_ip" "puat-ip" {
 }
 
 resource "azurerm_network_interface" "net-i" {
-    name = "AZMAGNIC11"
-    location = "${var.location}"
-    resource_group_name = "${azurerm_resource_group.vnetrm.name}"
+    name                      = "AZMAGNIC11"
+    location                  = "${var.location}"
+    resource_group_name       = "${azurerm_resource_group.vnetrm.name}"
+    network_security_group_id = "${azurerm_network_security_group.puat-sg.id}"
+
     ip_configuration {
     name                          = "AZBENVNIP1-private"
     subnet_id                     = "${azurerm_subnet.vnetsub1.id}"
@@ -50,5 +52,4 @@ resource "azurerm_network_interface" "net-i" {
     private_ip_address            = "10.0.0.4"
     public_ip_address_id          = "${azurerm_public_ip.puat-ip.id}"
   }
-
 }
