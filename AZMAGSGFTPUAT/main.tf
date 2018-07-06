@@ -31,3 +31,10 @@ resource "azurerm_subnet" "vnetsub1" {
     resource_group_name  = "${azurerm_resource_group.vnetrm.name}"
     virtual_network_name = "${azurerm_virtual_network.vnet.name}"
 }
+
+resource "azurerm_public_ip" "puat-ip" {
+    name                         = "${var.public_ip_name}"
+    location                     = "${var.location}"
+    public_ip_address_allocation = "dynamic"
+    resource_group_name          = "${azurerm_resource_group.machine.name}"
+}
