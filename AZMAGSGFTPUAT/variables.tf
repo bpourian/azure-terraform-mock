@@ -8,3 +8,5 @@ variable "location" {}
 variable "vnet_cidr" {}
 variable "subnet1_cidr" {}
 variable "public_ip_name" {}
+
+variable "source_ip_prefix" {}
