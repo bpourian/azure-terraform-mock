@@ -13,7 +13,7 @@ data "terraform_remote_state" "localstate" {
 }
 
 provider "azurerm" {
-  subscription_id = "${var.subscription_id}"
+  subscription_id = "${data.terraform_remote_state.localstate.subscription_id}"
 }
 
 resource "azurerm_resource_group" "machine" {
@@ -24,7 +24,7 @@ resource "azurerm_resource_group" "machine" {
 resource "azurerm_subnet" "vnetsub12" {
     name                 = "AZMAGSNET12"
     address_prefix       = "${var.subnet1_cidr}"
-    resource_group_name  = "${var.azurerm_resource_group_name_vnet}"
+    resource_group_name  = "${data.terraform_remote_state.localstate.azurerm_resource_group_name_vnet}"
     virtual_network_name = "AZMAGVNET1"
 }
 
@@ -38,7 +38,7 @@ resource "azurerm_public_ip" "pprd-ip" {
 resource "azurerm_network_interface" "net-i" {
     name                      = "AZMAGNIC12"
     location                  = "${var.location}"
-    resource_group_name       = "${var.azurerm_resource_group_name_vnet}"
+    resource_group_name       = "${data.terraform_remote_state.localstate.azurerm_resource_group_name_vnet}"
     network_security_group_id = "${azurerm_network_security_group.pprd-sg.id}"
 
     ip_configuration {
