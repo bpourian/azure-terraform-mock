@@ -4,6 +4,10 @@
 # Demo purposee only
 ###############################################################################
 
+terraform {
+  backend "local" {}
+}
+
 provider "azurerm" {
   subscription_id = "${var.subscription_id}"
 }
@@ -35,7 +39,7 @@ resource "azurerm_subnet" "vnetsub1" {
 resource "azurerm_public_ip" "puat-ip" {
     name                         = "${var.public_ip_name}"
     location                     = "${var.location}"
-    public_ip_address_allocation = "dynamic"
+    public_ip_address_allocation = "static"
     resource_group_name          = "${azurerm_resource_group.machine.name}"
 }
 
