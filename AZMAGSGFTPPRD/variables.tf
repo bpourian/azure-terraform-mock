@@ -9,3 +9,8 @@ variable "source_ip_prefix" {}
 
 variable "admin_username" {}
 variable "admin_password" {}
+
+variable "storage_account_name" {}
+variable "container_name" {}
+variable "storage_key" {}
+variable "access_key" {}

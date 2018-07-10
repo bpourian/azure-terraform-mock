@@ -12,3 +12,8 @@ location         = "North Europe for example"
 subnet1_cidr     = "10.0.1.0/24"
 public_ip_name   = "NAME-YOUR-IP"
 source_ip_prefix = "SOURCE-IP-TO-WHITELIST"
+
+storage_account_name = "name"
+container_name       = "name-container"
+storage_key          = "storage-key"
+access_key           = "sghckaekenlkendlw"

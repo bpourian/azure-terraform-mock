@@ -1,4 +1,5 @@
 #Terraform files
 *.tfstate*
 terraform.tfvars
+beconf.tfvars
 terraform.tfstate.backup

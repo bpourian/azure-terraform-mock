@@ -5,3 +5,15 @@ Two of the VM's will be running a Windows 2016 server and one will be on Ubuntu 
 
 I will be creating resource groups for the machines and virtual networks with their own subnets,
 network interface and security groups.
+
+
+Once you have created the file `beconf.tfvars` and input all the necessary details as listed in the sample file,
+you then run the following command.
+
+
+```
+terraform init -backend-config=beconf.tfvars
+
+```
+
+Useful blog for the above, [LINK](https://medium.com/@trstringer/use-azure-blob-storage-for-remote-terraform-state-5f809b95215a)
