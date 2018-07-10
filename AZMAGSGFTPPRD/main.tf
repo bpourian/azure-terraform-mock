@@ -25,7 +25,7 @@ resource "azurerm_subnet" "vnetsub12" {
     name                 = "AZMAGSNET12"
     address_prefix       = "${var.subnet1_cidr}"
     resource_group_name  = "${data.terraform_remote_state.localstate.azurerm_resource_group_name_vnet}"
-    virtual_network_name = "AZMAGVNET1"
+    virtual_network_name = "${data.terraform_remote_state.localstate.virtual_network_name}"
 }
 
 resource "azurerm_public_ip" "pprd-ip" {
