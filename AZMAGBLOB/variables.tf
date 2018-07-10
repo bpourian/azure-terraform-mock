@@ -8,3 +8,4 @@ variable "storage_account_name" {}
 variable "vnet_cidr" {}
 variable "address_prefix" {}
 variable "my_ip" {}
+variable "container_name" {}
