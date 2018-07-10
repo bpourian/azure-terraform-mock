@@ -10,7 +10,6 @@ network interface and security groups.
 Once you have created the file `beconf.tfvars` and input all the necessary details as listed in the sample file,
 you then run the following command.
 
-
 ```
 terraform init -backend-config=beconf.tfvars
 
